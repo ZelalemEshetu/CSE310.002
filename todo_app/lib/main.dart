@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'screens/todo_page.dart';
 
+/// Entry point of the application
 void main() {
   runApp(const MyApp());
 }
 
+/// Root widget of the Todo application
+/// Sets up the MaterialApp and loads the home screen
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -12,6 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      /// Home screen of the app
       home: TodoPage(),
     );
   }
