@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/task.dart';
+import 'about_page.dart';
 
 /// Main page of the Todo application
 /// Handles adding, displaying, marking, and deleting tasks
@@ -39,10 +40,26 @@ class _TodoPageState extends State<TodoPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My ToDo App'),
+
+        // SECOND SCREEN BUTTON (About Page)
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info),
+            tooltip: 'About App',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
+
       body: Column(
         children: [
-          // Input area for new tasks
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -56,7 +73,6 @@ class _TodoPageState extends State<TodoPage> {
                     ),
                   ),
                 ),
-                // Button to add task
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: addTask,
@@ -65,7 +81,6 @@ class _TodoPageState extends State<TodoPage> {
             ),
           ),
 
-          // Task list display
           Expanded(
             child: ListView.builder(
               itemCount: tasks.length,
@@ -79,8 +94,6 @@ class _TodoPageState extends State<TodoPage> {
                       });
                     },
                   ),
-
-                  // Task title with strike-through if completed
                   title: Text(
                     tasks[index].title,
                     style: TextStyle(
@@ -89,8 +102,6 @@ class _TodoPageState extends State<TodoPage> {
                           : TextDecoration.none,
                     ),
                   ),
-
-                  // Delete button for each task
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () => deleteTask(index),
